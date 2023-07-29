@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
-import NewsLayout1 from './NewsLayout1';
 
 export class News extends Component {
     data={
@@ -401,43 +400,19 @@ export class News extends Component {
       }
     }
   render() {
- 
-    // return (
-    // <div className="container">
-    //     <div className="row states">
-        
-    //     {this.state.articles.map((element)=>{
-    //     return <>
-    //         <div className="col-md-6" key={element.url}>
-    //             <h1 className="headline text-center fw-bold">{element.title}</h1>
-    //             <NewsItem description={element.description} urlToImage={element.urlToImage}/>
-    //         </div>
-    //         {this.state.country.map((buss)=>{
-    //     return <>
-    //         <div className="col-md-3" key={buss.url}>
-    //             <NewsLayout1 title={buss.title} description={buss.description} urlToImage={buss.urlToImage} news={buss.news}/>
-    //         </div>
-    //     </>
-    //     }
-    //     )}
-    //     </>
-    //     }
-    //     )}
-    //     </div>
-    // </div>
-    // )
 
     return (
         <div className="container">
             <div className="row states">     
             {this.state.articles.map((element,index)=>{
-            // const isFirstElement = `${index % 5 === 0}`;
+            const isFirstElement = `${index % 5 === 0}`;
+            console.log(isFirstElement);
             return <>
                 <div className={`${index % 5 === 0 ? 'col-md-6' : 'col-md-3'}`} key={element.url}>
                 <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
                      {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
                     <p className={`${index % 5 === 0 ? 'headline text-center fw-bold h1' : 'headline text-center fw-bold h5'}`}>{element.title}</p>
-                    <NewsItem description={element.description.slice(0, 150)+'...'} urlToImage={element.urlToImage}/>
+                    <NewsItem description={element.description.slice(0, 150)+'...'} urlToImage={element.urlToImage}/> 
                     </a>
                 </div>
             </>
