@@ -5,6 +5,7 @@ export class NavBar extends Component {
  
   render() {
     return (
+        <>
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-dark">
             <div className="container">
@@ -50,6 +51,43 @@ export class NavBar extends Component {
             </div>
         </nav>
       </div>
+      <div>
+        <nav className="navbar navbar-expand-lg trending-topics">
+            <div className="container">
+                {/* <a className="navbar-brand text-light" href="#">DailyDigest</a> */}
+
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li className="nav-item">
+                        <a className="nav-link active text-light" aria-current="page" href="#">Russia</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link text-dark" href="#">Trump</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link text-dark" href="#">Women's World Cup</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link text-dark" href="#">India Shooting</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link text-dark" href="#">Cardi B</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link text-dark" href="#">Entertainment</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link text-dark" href="#">Style</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link text-dark" href="#">Travel</a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+      </div>
+      </>
     )
   }
 }
