@@ -1,3 +1,11 @@
+# React News App using News API
+This repository contains a React app that utilizes the News API to display the latest news articles from various sources. With this app, users can stay updated on the current news across different categories.
+
+# Features
+View top headlines from various news sources.
+Filter news by categories such as business, entertainment, health, science, sports, technology, and more.
+Read the full article by clicking on a news item.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
