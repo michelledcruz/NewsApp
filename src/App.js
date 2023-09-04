@@ -12,12 +12,14 @@ export default class App extends Component {
       <div>
         <NavBar/>
         <Routes>
-          <Route path="/" element={<News category={'general'} pageSize={6}/>} />
-          <Route path="/health" element={<News category={'health'} pageSize={6}/>} />
-          <Route path="/entertainment" element={<News category={'entertainment'} pageSize={6}/>} />
-          <Route path="/general" element={<News category={'general'} pageSize={6}/>} />
-          <Route path="/us" element={<h1>heyyy</h1>} />
-        </Routes>
+          <Route exact path="/" element={<News key={"general"} category={'general'} pageSize={6}/>} />
+          <Route exact path="/health" element={<News key={"health"} category={'health'} pageSize={6}/>} />
+          <Route exact path="/entertainment" element={<News key={"entertainment"} category={'entertainment'} pageSize={6}/>} />
+          <Route exact path="/general" element={<News key={"general"} category={'general'} pageSize={6}/>} />
+          <Route exact path="/business" element={<News key={"business"} category={'business'} pageSize={6}/>} />
+          <Route exact path="/science" element={<News key={"science"} category={'science'} pageSize={6}/>} />
+          <Route exact path="/technology" element={<News key={"technology"} category={'technology'} pageSize={6}/>} />
+          </Routes>
       </div>
       </>
     )
