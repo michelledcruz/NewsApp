@@ -20,70 +20,34 @@ export class NavBar extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
-                        <Link className="nav-link active text-light" aria-current="page" to="/general">World</Link >
+                        <Link className="nav-link active text-light" aria-current="page" to="/general" >World</Link >
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link text-light" to="/us">US</Link >
+                        <Link className="nav-link text-light" to="/technology" >Technology</Link >
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link text-light" to="#">Politics</Link >
+                        <Link className="nav-link text-light" to="/business" >Business</Link >
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link text-light" to="#">Sports</Link >
+                        <Link className="nav-link text-light" to="/general" >Sports</Link >
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link text-light " to="/health" reloadDocument>Health</Link >
+                        <Link className="nav-link text-light " to="/health" >Health</Link >
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link text-light" to="/entertainment" reloadDocument>Entertainment</Link >
+                        <Link className="nav-link text-light" to="/entertainment" >Entertainment</Link >
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link text-light" to="#">Style</Link >
+                        <Link className="nav-link text-light" to="/science" >Science</Link >
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link text-light" to="#">Travel</Link >
+                        <Link className="nav-link text-light" to="/general" >Travel</Link >
                     </li>
                     </ul>
                         <form className="d-flex">
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                             <button className="btn btn-outline-success" type="submit">Search</button>
                         </form>
-                </div>
-            </div>
-        </nav>
-      </div>
-      <div>
-        <nav className="navbar navbar-expand-lg trending-topics">
-            <div className="container">
-                {/* <Link  className="navbar-brand text-light" to="#">DailyDigest</Link > */}
-
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li className="nav-item">
-                        <Link  className="nav-link active text-light" aria-current="page" to="#">Russia</Link >
-                    </li>
-                    <li className="nav-item">
-                        <Link  className="nav-link text-dark" to="#">Trump</Link >
-                    </li>
-                    <li className="nav-item">
-                        <Link  className="nav-link text-dark" to="#">Women's World Cup</Link >
-                    </li>
-                    <li className="nav-item">
-                        <Link  className="nav-link text-dark" to="#">India Shooting</Link >
-                    </li>
-                    <li className="nav-item">
-                        <Link  className="nav-link text-dark" to="#">Cardi B</Link >
-                    </li>
-                    <li className="nav-item">
-                        <Link  className="nav-link text-dark" to="#">Entertainment</Link >
-                    </li>
-                    <li className="nav-item">
-                        <Link  className="nav-link text-dark" to="#">Style</Link >
-                    </li>
-                    <li className="nav-item">
-                        <Link  className="nav-link text-dark" to="#">Travel</Link >
-                    </li>
-                    </ul>
                 </div>
             </div>
         </nav>
