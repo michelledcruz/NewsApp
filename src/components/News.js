@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
+import NewsLinks from './NewsLinks';
 
 export class News extends Component {
     data={
@@ -22,7 +23,7 @@ export class News extends Component {
             "id": null,
             "name": "Walmart.com"
             },
-            "author": null,
+            "author": "xyz",
             "title": "Walmart Launches Walmart+ Assist: Half Price Memberships for Those on Government Assistance - Walmart Corporate",
             "description": "Helping people save money and live better is at the core of everything we do at Walmart, and Walmart+ is that mission supercharged. Since launching Walmart+ in 2020, we have worked hard to curate a membership offering that pairs benefits with savings, providi…",
             "url": "https://corporate.walmart.com/newsroom/2023/07/20/walmart-launches-walmart-assist-half-price-memberships-for-those-on-government-assistance",
@@ -66,19 +67,19 @@ export class News extends Component {
 
     return (
         <div className="container">
-            <h2 class="container__title-text container_lead-plus-headlines-with-images__title-text" data-editable="title">{`${this.props.category}`}</h2>
+            {/* <h2 class="container__title-text container_lead-plus-headlines-with-images__title-text" data-editable="title">{`${this.props.category}`}</h2> */}
             <div className="row states">     
             {this.state.articles.map((element,index)=>{
-            const isFirstElement = `${index % 5 === 0}`;
-            console.log(isFirstElement);
+            // const isFirstElement = `${index % 5 === 0}`;
+            const isEmpty = `${element.title!="[Removed]"}`;
+            console.log(isEmpty);
             return <>
                 <div className={`${index % 5 === 0 ? 'col-md-6' : 'col-md-3'}`} key={element.url}>
                 <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
                      {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
                     <p className={`${index % 5 === 0 ? 'headline text-center fw-bold h1' : 'headline text-center fw-bold h5'}`}>{element.title}</p>
-                    <NewsItem description={element.description?element.description.slice(0, 150)+'...':""} urlToImage={element.urlToImage?element.urlToImage:""}/> 
+                    <NewsItem description={element.description?element.description.slice(0, 150)+'...':""} urlToImage={element.urlToImage?element.urlToImage:""} author={element.author} source={element.source.name} /> 
                     </a>
-                    {/* {isFirstElement=="false"? <p>{element.title}</p> : ""} */}
                 </div>
             </>
             }
