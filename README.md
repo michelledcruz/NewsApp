@@ -1,5 +1,5 @@
 # React News App using News API ( NEWS DIGEST )
-This repository contains a React app that utilizes the News API to display the latest news articles from various sources. With this app, users can stay updated on the current news across different categories. It will have a load more option as well.
+This project is a React-based NewsApp that provides a user-friendly interface for accessing news articles from around the world, powered by the NewsAPI, a free and reliable news source. Inspired by the layout and design of the CNN news website, this project aims to recreate the look and feel of a popular news site while offering the flexibility and extensibility of React.
 
 I have tried creating a clone of CNN news design layout
 
