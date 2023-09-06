@@ -4,9 +4,16 @@ This project is a React-based NewsApp that provides a user-friendly interface fo
 I have tried creating a clone of CNN news design layout
 
 # Features
-View top headlines from various news sources.
-Filter news by categories such as business, entertainment, health, science, sports, technology, and more.
-Read the full article by clicking on a news item.
+
+News Categories: Browse news articles categorized by topics such as politics, sports, entertainment, and more.
+Detailed Article View: Click on a news headline to view the full article, complete with images and text.
+React Router: Implemented with React Router for seamless navigation between different pages and categories.
+State Management: Utilizes React state to manage the application's data and UI, ensuring a smooth user experience.
+Responsive Design: Designed to be mobile-friendly, allowing users to access news on various devices.
+API Integration: Fetches real-time news data from the NewsAPI to provide up-to-date news articles.
+Class-Based Components: Built using class-based React components for a structured and organized codebase.
+Easy Customization: Designed with modularity in mind, making it easy to extend and customize for future enhancements.
+Open Source: This project is open source, and contributions from the community are welcome.
 
 # Getting Started with Create React App
 
