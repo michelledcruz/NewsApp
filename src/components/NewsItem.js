@@ -7,15 +7,14 @@ export class NewsItem extends Component {
       <div>
         <div className="card">
             <img src={urlToImage} className="card-img-top" alt="..."/>
-           
             <div className="card-body">
             <span class="badge bg-danger">{source}</span>
             <h5 className="card-title">{title}</h5>
             <p className="card-text">{description}</p>
-            {author
+            {/* {author
               ? <p class="card-text">By {author}  </p>
               : ""
-            } 
+            }  */}
             </div>
         </div>
       </div>
