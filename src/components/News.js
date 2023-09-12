@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
-import NewsLinks from './NewsLinks';
+// import NewsLinks from './NewsLinks';
 
 export class News extends Component {
     data={
@@ -44,7 +44,8 @@ export class News extends Component {
             "publishedAt": "2023-07-21T02:07:00Z",
             "content": "Since the spring of this year, investigators looking into the Gilgo Beach serial killings case have been operating on the theory that the suspect, Rex Heuermann, committed the killings in his Massape… [+5843 chars]"
             }
-            ]
+            ],
+            
     }
     constructor(){
         super();
@@ -57,24 +58,41 @@ export class News extends Component {
 
     async componentDidMount(){
         // let url="https://newsapi.org/v2/top-headlines?country=in&apiKey=0a38ea26222a4fa99a10b6c869fff197";
+       // let url="https://newsdata.io/api/1/news?apikey=pub_2915514a13cdff2e5d6a0fffb864150ede00b";
         let url=`https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=us&apiKey=0a38ea26222a4fa99a10b6c869fff197&pageSize=${this.props.pageSize}`;
+    
         let data = await fetch(url);
+    
         let parsedData = await data.json();
+       
         // console.log(parsedData);
         this.setState({articles: parsedData.articles});
+    
     }
   render() {
 
     return (
-        <div className="container">
+        <>
+        <div className="container wrapper">
             {/* <h2 class="container__title-text container_lead-plus-headlines-with-images__title-text" data-editable="title">{`${this.props.category}`}</h2> */}
-            <div className="row states">     
-            {this.state.articles.map((element,index)=>{
-            // const isFirstElement = `${index % 5 === 0}`;
-            const isEmpty = `${element.title!="[Removed]"}`;
-            console.log(isEmpty);
+            <div className="row states box-1">     
+            {this.state.articles.slice(0,1).map((element,index)=>{
             return <>
-                <div className={`${index % 5 === 0 ? 'col-md-6' : 'col-md-3'}`} key={element.url}>
+                <div className={`${index % 5 === 0 ? 'column6' : 'column3'}`} key={element.url}>
+                <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
+                     {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
+                    <p className={`${index % 5 === 0 ? 'headline text-center fw-bold h1' : 'headline text-center fw-bold h5'}`}>{element.title}</p>
+                    <NewsItem description={element.description?element.description.slice(0, 450)+'...':""} urlToImage={element.urlToImage?element.urlToImage:""} author={element.author} source={element.source.name} /> 
+                    </a>
+                </div>
+            </>
+            }
+            )}
+            </div>
+            <div className="row states box-2">     
+            {this.state.articles.slice(1,2).map((element,index)=>{
+            return <>
+                <div className={`${index % 5 === 0 ? 'column6' : 'column3'}`} key={element.url}>
                 <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
                      {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
                     <p className={`${index % 5 === 0 ? 'headline text-center fw-bold h1' : 'headline text-center fw-bold h5'}`}>{element.title}</p>
@@ -85,7 +103,52 @@ export class News extends Component {
             }
             )}
             </div>
+            <div className="row states box-3">     
+            {this.state.articles.slice(3,4).map((element,index)=>{
+            return <>
+                <div className="links" key={element.url}>
+                <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
+                     {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
+                     <p className={`${index % 5 === 0 ? 'headline text-center fw-bold h1' : 'headline text-center fw-bold h5'}`}>{element.title}</p>
+                    <NewsItem description={element.description?element.description.slice(0, 150)+'...':""} urlToImage={element.urlToImage?element.urlToImage:""} author={element.author} source={element.source.name} /> 
+                    </a>
+                </div>
+            </>
+            }
+            )}
+            </div>
+            <div className="row states box-4">     
+            {this.state.articles.slice(4,8).map((element,index)=>{
+            return <>
+                <div className="links" key={element.url}>
+                <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
+                     {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
+                     <ul>
+                        <li className='headlines'>{element.title}</li>
+                     </ul>
+                    {/* <p className={`${index % 5 === 0 ? 'headline text-center fw-bold h1' : 'headline text-center fw-bold h5'}`}>{element.title}</p> */}
+                    </a>
+                </div>
+            </>
+            }
+            )}
+            </div>
+            <div className="row states box-5">     
+            {this.state.articles.slice(8,9).map((element,index)=>{
+            return <>
+                 <div className="links" key={element.url}>
+                <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
+                     {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
+                    <NewsItem urlToImage={element.urlToImage?element.urlToImage:""} title={element.title} />
+                    {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
+                    </a>
+                </div>
+            </>
+            }
+            )}
+            </div>
         </div>
+        </>
         )
   }
 }
