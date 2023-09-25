@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
-// import NewsLinks from './NewsLinks';
 
 export class News extends Component {
     data={
@@ -47,13 +46,17 @@ export class News extends Component {
             ],
             
     }
-    constructor(){
-        super();
+
+    capitalizeFirstLetter = (str) => { return str.charAt(0).toUpperCase() + str.slice(1); }
+
+    constructor(props){
+        super(props);
         this.state = {
             articles: this.data.articles,
             country: this.data.country,
             loading: false
       }
+      document.title = `The Daily Digest-${this.capitalizeFirstLetter(this.props.category)}`;
     }
 
     async componentDidMount(){
@@ -72,6 +75,7 @@ export class News extends Component {
   render() {
 
     return (
+        
         <>
         <div className="container wrapper">
             {/* <h2 class="container__title-text container_lead-plus-headlines-with-images__title-text" data-editable="title">{`${this.props.category}`}</h2> */}
@@ -82,7 +86,7 @@ export class News extends Component {
                 <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
                      {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
                     <p className={`${index % 5 === 0 ? 'headline text-center fw-bold h1' : 'headline text-center fw-bold h5'}`}>{element.title}</p>
-                    <NewsItem description={element.description?element.description.slice(0, 450)+'...':""} urlToImage={element.urlToImage?element.urlToImage:""} author={element.author} source={element.source.name} /> 
+                    <NewsItem description={element.description} urlToImage={element.urlToImage?element.urlToImage:""} author={element.author} source={element.source.name} /> 
                     </a>
                 </div>
             </>
@@ -96,7 +100,7 @@ export class News extends Component {
                 <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
                      {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
                     <p className={`${index % 5 === 0 ? 'headline text-center fw-bold h1' : 'headline text-center fw-bold h5'}`}>{element.title}</p>
-                    <NewsItem description={element.description?element.description.slice(0, 150)+'...':""} urlToImage={element.urlToImage?element.urlToImage:""} author={element.author} source={element.source.name} /> 
+                    <NewsItem description={element.description.slice(0, 175)+'...'} urlToImage={element.urlToImage?element.urlToImage:""} author={element.author} source={element.source.name} /> 
                     </a>
                 </div>
             </>
@@ -135,6 +139,20 @@ export class News extends Component {
             </div>
             <div className="row states box-5">     
             {this.state.articles.slice(8,9).map((element,index)=>{
+            return <>
+                 <div className="links" key={element.url}>
+                <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
+                     {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
+                    <NewsItem urlToImage={element.urlToImage?element.urlToImage:""} title={element.title} />
+                    {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
+                    </a>
+                </div>
+            </>
+            }
+            )}
+            </div>
+            <div className="row states box-6">     
+            {this.state.articles.slice(9,10).map((element,index)=>{
             return <>
                  <div className="links" key={element.url}>
                 <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
