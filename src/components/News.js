@@ -54,7 +54,8 @@ export class News extends Component {
         this.state = {
             articles: this.data.articles,
             country: this.data.country,
-            loading: false
+            loading: false,
+            page:1
       }
       document.title = `The Daily Digest-${this.capitalizeFirstLetter(this.props.category)}`;
     }
@@ -62,7 +63,7 @@ export class News extends Component {
     async componentDidMount(){
         // let url="https://newsapi.org/v2/top-headlines?country=in&apiKey=0a38ea26222a4fa99a10b6c869fff197";
        // let url="https://newsdata.io/api/1/news?apikey=pub_2915514a13cdff2e5d6a0fffb864150ede00b";
-        let url=`https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=us&apiKey=0a38ea26222a4fa99a10b6c869fff197&pageSize=${this.props.pageSize}`;
+        let url=`https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=us&apiKey=0a38ea26222a4fa99a10b6c869fff197&pageSize=${this.props.pageSize}&page=${this.state.page}`;
     
         let data = await fetch(url);
     
@@ -72,10 +73,31 @@ export class News extends Component {
         this.setState({articles: parsedData.articles});
     
     }
+
+     nextClick = async () => {
+        // console.log("next is clicked");
+        let url=`https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=us&apiKey=0a38ea26222a4fa99a10b6c869fff197&pageSize=${this.props.pageSize}&page=${this.state.page + 1}`;
+        let data = await fetch(url);
+        let parsedData = await data.json();
+        this.setState({
+            page: this.state.page + 1,
+            articles: parsedData.articles
+        })
+     }
+
+     prevClick = async () =>{
+        // console.log("prev is clicked");
+        let url=`https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=us&apiKey=0a38ea26222a4fa99a10b6c869fff197&pageSize=${this.props.pageSize}&page=${this.state.page - 1}`;
+        let data = await fetch(url);
+        let parsedData = await data.json();
+        this.setState({
+            page: this.state.page - 1,
+            articles: parsedData.articles
+        })
+     }
   render() {
 
     return (
-        
         <>
         <div className="container wrapper">
             {/* <h2 class="container__title-text container_lead-plus-headlines-with-images__title-text" data-editable="title">{`${this.props.category}`}</h2> */}
@@ -83,10 +105,10 @@ export class News extends Component {
             {this.state.articles.slice(0,1).map((element,index)=>{
             return <>
                 <div className={`${index % 5 === 0 ? 'column6' : 'column3'}`} key={element.url}>
-                <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
+                <a href={element.url}  target="_blank" rel="noopener noreferrer"  style={{ textDecoration: "none", color: "#000" }}>
                      {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
                     <p className={`${index % 5 === 0 ? 'headline text-center fw-bold h1' : 'headline text-center fw-bold h5'}`}>{element.title}</p>
-                    <NewsItem description={element.description} urlToImage={element.urlToImage?element.urlToImage:""} author={element.author} source={element.source.name} /> 
+                    <NewsItem description={element.description} urlToImage={element.urlToImage?element.urlToImage:"https://nypost.com/wp-content/uploads/sites/2/2023/10/NYPICHPDPICT000055138580.jpg?quality=75&strip=all&w=1024"} author={element.author} source={element.source.name} /> 
                     </a>
                 </div>
             </>
@@ -97,7 +119,7 @@ export class News extends Component {
             {this.state.articles.slice(1,2).map((element,index)=>{
             return <>
                 <div className={`${index % 5 === 0 ? 'column6' : 'column3'}`} key={element.url}>
-                <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
+                <a href={element.url}  target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "#000" }}>
                      {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
                     <p className={`${index % 5 === 0 ? 'headline text-center fw-bold h1' : 'headline text-center fw-bold h5'}`}>{element.title}</p>
                     <NewsItem description={element.description.slice(0, 175)+'...'} urlToImage={element.urlToImage?element.urlToImage:""} author={element.author} source={element.source.name} /> 
@@ -111,7 +133,7 @@ export class News extends Component {
             {this.state.articles.slice(3,4).map((element,index)=>{
             return <>
                 <div className="links" key={element.url}>
-                <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
+                <a href={element.url}  target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "#000" }}>
                      {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
                      <p className={`${index % 5 === 0 ? 'headline text-center fw-bold h1' : 'headline text-center fw-bold h5'}`}>{element.title}</p>
                     <NewsItem description={element.description?element.description.slice(0, 150)+'...':""} urlToImage={element.urlToImage?element.urlToImage:""} author={element.author} source={element.source.name} /> 
@@ -125,7 +147,7 @@ export class News extends Component {
             {this.state.articles.slice(4,8).map((element,index)=>{
             return <>
                 <div className="links" key={element.url}>
-                <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
+                <a href={element.url}  target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "#000" }}>
                      {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
                      <ul>
                         <li className='headlines'>{element.title}</li>
@@ -141,7 +163,7 @@ export class News extends Component {
             {this.state.articles.slice(8,9).map((element,index)=>{
             return <>
                  <div className="links" key={element.url}>
-                <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
+                <a href={element.url}  target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "#000" }}>
                      {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
                     <NewsItem urlToImage={element.urlToImage?element.urlToImage:""} title={element.title} />
                     {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
@@ -155,7 +177,7 @@ export class News extends Component {
             {this.state.articles.slice(9,10).map((element,index)=>{
             return <>
                  <div className="links" key={element.url}>
-                <a href={element.url}  target="_blank" style={{ textDecoration: "none", color: "#000" }}>
+                <a href={element.url}  target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "#000" }}>
                      {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
                     <NewsItem urlToImage={element.urlToImage?element.urlToImage:""} title={element.title} />
                     {/* <h1 className="headline text-center fw-bold">{element.title}</h1> */}
@@ -165,6 +187,10 @@ export class News extends Component {
             }
             )}
             </div>
+        </div>
+        <div className="container d-flex justify-content-between">
+        <button type="button" disabled={this.state.page<=1} class="btn btn-dark btn-next" onClick={this.prevClick}>PREVIOUS</button>
+        <button type="button" class="btn btn-dark btn-prev" onClick={this.nextClick}>NEXT</button>
         </div>
         </>
         )
