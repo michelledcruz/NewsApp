@@ -94,11 +94,44 @@ padding: 10px;
 }
 
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+.box-1-load{
+  grid-column: 1/3;
+  grid-row: 1/3;
+  background-color: beige;
+  border: 1px solid #333;
+  height: 200px;
+  width: 300px;
+}
+.box-2-load{
+grid-column: 3/4;
+grid-row: 1/2;
+background-color: beige;
+border: 1px solid #333;
+}
+.box-3-load{
+  grid-column: 4;
+  grid-row: 1/2;
+  padding: 10px;
+}
+.box-4-load{
+  grid-column: 1/3;
+  grid-row: 3/5;
+}
+.box-6-load{
+  grid-column: 3/4;
+  grid-row: 3;
+}
+.blink {
+  animation: blink-animation 0.90s steps(5, start) infinite;
+  -webkit-animation: blink-animation 0.90s steps(5, start) infinite;
+}
+@keyframes blink-animation {
   to {
-    transform: rotate(360deg);
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
   }
 }
