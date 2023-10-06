@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
+import Shimmer from './Shimmer'
 
 export class News extends Component {
     data={
@@ -55,7 +56,8 @@ export class News extends Component {
             articles: this.data.articles,
             country: this.data.country,
             loading: false,
-            page:1
+            page:1,
+            test:false
       }
       document.title = `The Daily Digest-${this.capitalizeFirstLetter(this.props.category)}`;
     }
@@ -71,7 +73,16 @@ export class News extends Component {
        
         // console.log(parsedData);
         this.setState({articles: parsedData.articles});
-    
+
+        this.timer = setInterval(
+            () => this.setState({test: true}),
+            800,
+        );
+
+    }
+
+    async componentWillUnmount() {
+        clearInterval(this.timer);
     }
 
      nextClick = async () => {
@@ -81,8 +92,13 @@ export class News extends Component {
         let parsedData = await data.json();
         this.setState({
             page: this.state.page + 1,
-            articles: parsedData.articles
+            articles: parsedData.articles,
+            test:false
         })
+        this.timer = setInterval(
+            () => this.setState({test: true}),
+            2000,
+        );
      }
 
      prevClick = async () =>{
@@ -94,12 +110,14 @@ export class News extends Component {
             page: this.state.page - 1,
             articles: parsedData.articles
         })
-     }
+     } 
   render() {
 
-    return (
+    return (  ( this.state.test === false) ? <Shimmer />: 
         <>
         <div className="container wrapper">
+            
+
             {/* <h2 class="container__title-text container_lead-plus-headlines-with-images__title-text" data-editable="title">{`${this.props.category}`}</h2> */}
             <div className="row states box-1">     
             {this.state.articles.slice(0,1).map((element,index)=>{
@@ -190,7 +208,7 @@ export class News extends Component {
         </div>
         <div className="container d-flex justify-content-between">
         <button type="button" disabled={this.state.page<=1} class="btn btn-dark btn-next" onClick={this.prevClick}>PREVIOUS</button>
-        <button type="button" class="btn btn-dark btn-prev" onClick={this.nextClick}>NEXT</button>
+        <button type="button" disabled={this.state.page>=3}class="btn btn-dark btn-prev" onClick={this.nextClick}>NEXT</button>
         </div>
         </>
         )
